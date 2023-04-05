@@ -37,11 +37,12 @@ class ViewController: UIViewController {
         countries += ["estonia","france","germany","ireland","italy","monaco","nigeria","poland","russia","spain","uk","us"]
         
         //calling the method
+        //askQuestion(action:nil)
         askQuestion()
     }
     
     //Method that shows 3 random flag images on the screen
-    func askQuestion(){
+    func askQuestion(action:UIAlertAction! = nil){
         
         //shuffling array contents
         countries.shuffle()
@@ -55,6 +56,26 @@ class ViewController: UIViewController {
         
         title = countries[correctAnswer].uppercased()
     }
+    
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        
+        var title:String
+         //check whether answer is correct
+        //Count score
+        if sender.tag == correctAnswer {
+            title = "CORRECT"
+            score += 1
+        } else {
+            title = "WRONG"
+            score -= 1
+        }
+        
+        //send an alert showing what the new score is
+        let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
+        //Setting continue button on the alert
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+    }
+    
 
 
 }
