@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
     @IBOutlet var button1: UIButton!
     @IBOutlet var button2: UIButton!
     @IBOutlet var button3: UIButton!
@@ -17,6 +16,7 @@ class ViewController: UIViewController {
     var countries = [String]()
     var score = 0
     var correctAnswer = 0
+    var counter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,13 @@ class ViewController: UIViewController {
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
-        title = countries[correctAnswer].uppercased()
+        title = "\(countries[correctAnswer].uppercased())  Score: \(score)"
+    }
+    
+    func resetCountAndScore(action:UIAlertAction) {
+        counter = 0
+        score = 0
+        title = "\(countries[correctAnswer].uppercased())  Score: \(score)"
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -65,17 +71,44 @@ class ViewController: UIViewController {
         if sender.tag == correctAnswer {
             title = "CORRECT"
             score += 1
+            counter += 1
+            
+            if counter <= 10 {
+                //send an alert showing what the new score is
+                let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
+                //Setting continue button on the alert
+                ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+                present(ac, animated: true)
+            } else {
+                
+                title = "YOU'RE DONE"
+                let ac = UIAlertController(title: title, message: "Your have guessed 10 flags already", preferredStyle: .alert)
+                //Setting continue button on the alert
+                ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: resetCountAndScore))
+                present(ac, animated: true)
+            }
+            
         } else {
             title = "WRONG"
             score -= 1
+            counter += 1
+            
+            if counter <= 10 {
+                //send an alert showing what the new score is
+                let ac = UIAlertController(title: title, message: "The correct answer is \(countries[correctAnswer])", preferredStyle: .alert)
+                //Setting continue button on the alert
+                ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+                present(ac, animated: true)
+            } else {
+                title = "YOU'RE DONE"
+                let ac = UIAlertController(title: title, message: "Your have guessed 10 flags", preferredStyle: .alert)
+                //Setting continue button on the alert
+                ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: resetCountAndScore))
+                present(ac, animated: true)
+            }
+
         }
         
-        //send an alert showing what the new score is
-        let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
-        //Setting continue button on the alert
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        
-        present(ac, animated: true)
     }
     
 
