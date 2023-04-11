@@ -17,3 +17,5 @@ Some of the concepts learnt during the completion of #project1 include;
 - Random Numbers
 - Actions
 - UIAlertController
+
+I also got to complete the challenge where I displayed the counter on the navigation bar, and added a counter to count to ten guesses
