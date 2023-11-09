@@ -18,6 +18,9 @@
                         <subviews>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTr-Ro-cZt">
                                 <rect key="frame" x="107" y="421" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fTr-Ro-cZt" secondAttribute="height" multiplier="2:1" id="8z2-1a-bDD"/>
+                                </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="" image="us"/>
                                 <connections>
@@ -26,6 +29,9 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXa-9c-uNZ">
                                 <rect key="frame" x="107" y="97" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dXa-9c-uNZ" secondAttribute="height" multiplier="2:1" id="eSn-81-ryQ"/>
+                                </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="" image="us"/>
                                 <connections>
@@ -34,6 +40,9 @@
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLk-24-E5M">
                                 <rect key="frame" x="107" y="268" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tLk-24-E5M" secondAttribute="height" multiplier="2:1" id="CpL-If-2Ud"/>
+                                </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="us"/>
                                 <connections>
@@ -45,8 +54,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dXa-9c-uNZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="BVB-ii-mqK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fTr-Ro-cZt" secondAttribute="bottom" constant="20" id="Bzm-pR-CZ8"/>
                             <constraint firstItem="tLk-24-E5M" firstAttribute="top" secondItem="dXa-9c-uNZ" secondAttribute="bottom" constant="71" id="DN1-rZ-61f"/>
+                            <constraint firstItem="fTr-Ro-cZt" firstAttribute="height" secondItem="tLk-24-E5M" secondAttribute="height" id="JXB-Qy-bzd"/>
                             <constraint firstItem="dXa-9c-uNZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="9" id="OEF-iM-pru"/>
+                            <constraint firstItem="tLk-24-E5M" firstAttribute="height" secondItem="dXa-9c-uNZ" secondAttribute="height" id="mJb-UK-c63"/>
                             <constraint firstItem="fTr-Ro-cZt" firstAttribute="centerX" secondItem="tLk-24-E5M" secondAttribute="centerX" id="obK-dk-Qes"/>
                             <constraint firstItem="fTr-Ro-cZt" firstAttribute="top" secondItem="tLk-24-E5M" secondAttribute="bottom" constant="53" id="yzN-Ip-5FA"/>
                             <constraint firstItem="tLk-24-E5M" firstAttribute="centerX" secondItem="dXa-9c-uNZ" secondAttribute="centerX" id="zeL-hM-QZJ"/>
