@@ -42,5 +42,8 @@ https://github.com/leonardsangoroh/GuessTheFlag/assets/61079370/9d34d61a-7fcb-42
 ## Screen recording after AutoLayout
 
 
-Uploading Screen Recording 2023-11-09 at 16.48.53.mov…
+https://github.com/leonardsangoroh/GuessTheFlag/assets/61079370/a864cff3-64b9-4b61-8910-69adac64eaec
+
+
+
 
