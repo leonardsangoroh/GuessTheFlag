@@ -33,3 +33,14 @@ I also got to complete the challenge where I displayed the counter on the naviga
 
 ## Screenshot 3: After Guessing Wrong
 <img width="602" alt="Screenshot 2023-10-25 at 23 43 47" src="https://github.com/leonardsangoroh/GuessTheFlag/assets/61079370/a1b2d9eb-9fdd-4dd2-a442-e98d28747a65">
+
+## Screen recording before AutoLayout
+
+
+https://github.com/leonardsangoroh/GuessTheFlag/assets/61079370/9d34d61a-7fcb-42ad-b3e8-0638774f3d77
+
+## Screen recording after AutoLayout
+
+
+Uploading Screen Recording 2023-11-09 at 16.48.53.mov…
+
