@@ -82,7 +82,7 @@ class ViewController: UIViewController {
             } else {
                 
                 title = "YOU'RE DONE"
-                let ac = UIAlertController(title: title, message: "Your have guessed 10 flags already", preferredStyle: .alert)
+                let ac = UIAlertController(title: title, message: "You have guessed 10 flags already", preferredStyle: .alert)
                 //Setting continue button on the alert
                 ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: resetCountAndScore))
                 present(ac, animated: true)
