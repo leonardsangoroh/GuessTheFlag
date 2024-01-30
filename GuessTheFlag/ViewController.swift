@@ -55,13 +55,13 @@ class ViewController: UIViewController {
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
-        title = "\(countries[correctAnswer].uppercased())  Score: \(score)"
+        title = "\(countries[correctAnswer].uppercased())  High Score: \(highScore)"
     }
     
     func resetCountAndScore(action:UIAlertAction) {
         counter = 0
         score = 0
-        title = "\(countries[correctAnswer].uppercased())  Score: \(score)"
+        title = "\(countries[correctAnswer].uppercased())  High Score: \(highScore)"
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -116,7 +116,6 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: resetCountAndScore))
                 present(ac, animated: true)
             }
-
         }
         
     }
