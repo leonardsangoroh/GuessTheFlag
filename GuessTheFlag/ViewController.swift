@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var score = 0
     var correctAnswer = 0
     var counter = 0
+    var highScore:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,12 +81,21 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
                 present(ac, animated: true)
             } else {
-                
-                title = "YOU'RE DONE"
-                let ac = UIAlertController(title: title, message: "Your have guessed 10 flags already", preferredStyle: .alert)
-                //Setting continue button on the alert
-                ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: resetCountAndScore))
-                present(ac, animated: true)
+                if score > highScore {
+                    highScore = score
+                    title = "NEW HIGH SCORE!"
+                    let ac = UIAlertController(title: title, message: "Your new score is \(highScore)", preferredStyle: .alert)
+                    //Setting continue button on the alert
+                    ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: resetCountAndScore))
+                    present(ac, animated: true)
+                } else {
+                    title = "YOU'RE DONE"
+                    let ac = UIAlertController(title: title, message: "Your have guessed 10 flags already", preferredStyle: .alert)
+                    //Setting continue button on the alert
+                    ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: resetCountAndScore))
+                    present(ac, animated: true)
+                }
+
             }
             
         } else {
