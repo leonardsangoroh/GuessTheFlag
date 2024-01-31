@@ -55,6 +55,13 @@ class ViewController: UIViewController {
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
+        ///load high score from disk when app runs
+        let defaults = UserDefaults.standard
+        
+        if let savedHighScore = defaults.integer(forKey: "highScore") as? Int {
+            highScore = savedHighScore
+        }
+        
         title = "\(countries[correctAnswer].uppercased())  High Score: \(highScore)"
     }
     
@@ -88,6 +95,7 @@ class ViewController: UIViewController {
                     //Setting continue button on the alert
                     ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: resetCountAndScore))
                     present(ac, animated: true)
+                    save()
                 } else {
                     title = "YOU'RE DONE"
                     let ac = UIAlertController(title: title, message: "Your have guessed 10 flags already", preferredStyle: .alert)
@@ -117,6 +125,7 @@ class ViewController: UIViewController {
                     //Setting continue button on the alert
                     ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: resetCountAndScore))
                     present(ac, animated: true)
+                    save()
                 } else {
                     title = "YOU'RE DONE"
                     let ac = UIAlertController(title: title, message: "Your have guessed 10 flags already", preferredStyle: .alert)
@@ -130,6 +139,11 @@ class ViewController: UIViewController {
     
 
 
-}
+    }
+    
+    func save (){
+        let defaults = UserDefaults.standard
+        defaults.set(highScore, forKey: "highScore")
+    }
 
 }
