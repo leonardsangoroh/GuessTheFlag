@@ -50,6 +50,8 @@ class ViewController: UIViewController {
         
         correctAnswer = Int.random(in: 1...2)
         
+        resetButtonSize()
+        
         //assigns UI image to button                        describes which state of the button should be changed
         button1.setImage(UIImage(named: countries[0]), for: .normal)
         button2.setImage(UIImage(named: countries[1]), for: .normal)
@@ -66,12 +68,19 @@ class ViewController: UIViewController {
     }
     
     func resetCountAndScore(action:UIAlertAction) {
+        
+        resetButtonSize()
+        
         counter = 0
         score = 0
         title = "\(countries[correctAnswer].uppercased())  High Score: \(highScore)"
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
+        
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [], animations: {
+            sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        }, completion: nil)
         
         var title:String
          //check whether answer is correct
@@ -144,6 +153,14 @@ class ViewController: UIViewController {
     func save (){
         let defaults = UserDefaults.standard
         defaults.set(highScore, forKey: "highScore")
+    }
+    
+    func resetButtonSize() {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [], animations: {
+            self.button1.transform = CGAffineTransform.identity
+            self.button2.transform = CGAffineTransform.identity
+            self.button3.transform = CGAffineTransform.identity
+        }, completion: nil)
     }
 
 }
