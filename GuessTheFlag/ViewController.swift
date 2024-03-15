@@ -23,6 +23,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        showNotificationPermission()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Req", style: .plain, target: self, action: #selector(registerLocal))
         
         //Setting flag border width (from the CAlayer)
@@ -79,7 +82,6 @@ class ViewController: UIViewController {
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         
-        scheduleLocal()
         
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [], animations: {
             sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
@@ -174,6 +176,7 @@ class ViewController: UIViewController {
         center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
             if granted{
                 print("Access granted")
+                self.scheduleLocal()
             } else {
                 print("Access Denied")
             }
@@ -203,6 +206,21 @@ class ViewController: UIViewController {
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
         center.add(request)
+    }
+    
+    func showNotificationPermission() {
+        let center = UNUserNotificationCenter.current()
+        
+        center.getNotificationSettings { [weak self] (settings) in
+            if settings.authorizationStatus == .notDetermined {
+                self?.registerLocal()
+                
+            } else if settings.authorizationStatus == .authorized {
+                self?.scheduleLocal()
+            }
+        }
+        
+
     }
 
 
