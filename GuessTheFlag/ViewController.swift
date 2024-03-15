@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Req", style: .plain, target: self, action: #selector(registerLocal))
         
         //Setting flag border width (from the CAlayer)
         button1.layer.borderWidth = 1
@@ -77,6 +78,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
+        
+        scheduleLocal()
         
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [], animations: {
             sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
@@ -162,5 +165,45 @@ class ViewController: UIViewController {
             self.button3.transform = CGAffineTransform.identity
         }, completion: nil)
     }
+    
+    // to send local notifications, we need to request for permission
+    // registerLocal() is responsible for that
+    @ objc func registerLocal() {
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            if granted{
+                print("Access granted")
+            } else {
+                print("Access Denied")
+            }
+        }
+    }
+    
+    
+    // will configure all data needed to schedule a notification
+    // - content (what to show)
+    // - trigger (when to show it)
+    // - request (combination of content and trigger)
+    func scheduleLocal(){
+        
+        let center = UNUserNotificationCenter.current()
+        
+        // content
+        let content = UNMutableNotificationContent()
+        content.title = "Daily Reminder"
+        content.body = "Have you guessed a flag today?"
+        content.categoryIdentifier = "dailyReminder"
+        content.userInfo = ["customData":"wagwan"]
+        content.sound = UNNotificationSound.default
+        //86400
+        // trigger
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        center.add(request)
+    }
+
 
 }
