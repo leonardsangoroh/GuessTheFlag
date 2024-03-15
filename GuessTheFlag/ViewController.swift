@@ -193,6 +193,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         registerCategories()
         
         let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
         
         // content
         let content = UNMutableNotificationContent()
@@ -203,7 +204,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         content.sound = UNNotificationSound.default
         //86400
         // trigger
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 86400, repeats: true)
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
