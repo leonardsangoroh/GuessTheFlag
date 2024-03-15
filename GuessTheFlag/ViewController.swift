@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     @IBOutlet var button1: UIButton!
     @IBOutlet var button2: UIButton!
@@ -190,6 +190,8 @@ class ViewController: UIViewController {
     // - request (combination of content and trigger)
     func scheduleLocal(){
         
+        registerCategories()
+        
         let center = UNUserNotificationCenter.current()
         
         // content
@@ -221,6 +223,24 @@ class ViewController: UIViewController {
         }
         
 
+    }
+    
+    func registerCategories() {
+        let center = UNUserNotificationCenter.current()
+        // any alert-based messages sent will be routed to ViewController
+        center.delegate = self
+        
+        //An identifier, which is a unique text string that gets sent to you when the button is tapped.
+        //A title, which is what user’s see in the interface.
+        //Options, which describe any special options that relate to the action. You can choose from .authenticationRequired, .destructive, and .foreground.
+        let reminder = UNNotificationAction(identifier: "dailyReminder", title: "Remember to play today", options: .foreground)
+        
+        
+        // intent identifiers - used to connect notifications to intents if any is created
+        /// identifier has to be same as categoryIdentifier on line 199
+        let category = UNNotificationCategory(identifier: "dailyReminder", actions: [reminder], intentIdentifiers: [])
+        // register with notification center
+        center.setNotificationCategories([category])
     }
 
 
